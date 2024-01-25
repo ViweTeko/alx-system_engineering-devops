@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# This script displays numbers from 1 to 20 and displays:
+# 4, which is bad luck in China,
+# 9, which is bad luck in Japan,
+# 17, which bad luck in Italy.
+
+z=1
+
+while [ $z -le 20 ]
+do
+	echo "$z"
+	case $z in
+		"4") echo "bad luck from China";;
+		"9") echo "bad luck from Japan";;
+		"17") echo "bad luck from Itly";;
+	esac
+	(( z++ ))
+done
