@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# This script displays a list of contents in current working directory
+
+lis=$(ls)
+
+for a in $lis
+do
+	echo "$a" | cut -d '-' -f2
+done
