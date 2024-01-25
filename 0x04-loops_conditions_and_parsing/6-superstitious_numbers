@@ -12,7 +12,7 @@ do
 	case $z in
 		"4") echo "bad luck from China";;
 		"9") echo "bad luck from Japan";;
-		"17") echo "bad luck from Itly";;
+		"17") echo "bad luck from Italy";;
 	esac
 	(( z++ ))
 done
