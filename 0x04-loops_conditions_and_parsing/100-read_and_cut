@@ -2,7 +2,7 @@
 # This script displays contents of file '/etc/passwd'
 # It only displays username, user id, and user home dir PATH
 
-mine="/etc/passwd'
+mine="/etc/passwd"
 
 while IFS= read -r line
 do
