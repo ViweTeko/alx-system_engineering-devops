@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# This script displays a lsit format of numbers from 1 to 100,
+# while "Fizz", "Buzz", and "FizzBuzz" are displayed by multiples of:
+# 3, 5, and 3 & 5 respectively, others display normally
+
+for n in {1..100}
+do
+	if (( n % 3 == 0 && n % 5 == 0 ))
+	then
+		echo "FizzBuzz"
+	elif (( n % 3 == 0 ))
+	then
+		echo "Fizz"
+	elif (( n % 5 == 0 ))
+	then
+		echo "Buzz"
+	else
+		echo "$n"
+	fi
+done
