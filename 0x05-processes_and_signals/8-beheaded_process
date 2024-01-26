@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# This script kills task 7's process
+
+kill -9 "$(pgrep -f highlander)"
