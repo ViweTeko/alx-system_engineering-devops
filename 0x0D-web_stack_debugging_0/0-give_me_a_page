@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# This script connects to Docker container and return page 'Hello Holberton'
+
+service apache2 start
