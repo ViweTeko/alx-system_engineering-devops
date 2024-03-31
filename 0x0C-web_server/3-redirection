@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # This script configures nginx server to redirect to another page
 
 apt-get update
