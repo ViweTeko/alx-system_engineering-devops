@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 # This script shortens the debugging
-
 sed -i "s/8000/80/g" /etc/nginx/sites-enabled/default
 service nginx restart
-
 kill -9 "$(cat /run/nginx.pid)"
