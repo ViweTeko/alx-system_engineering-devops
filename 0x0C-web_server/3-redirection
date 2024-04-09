@@ -1,16 +1,23 @@
 #!/usr/bin/env bash
-# Configure your Nginx server so that /redirect_me is redirecting to another page.
-# The redirection is configured as a "301 Moved Permanently"
+#  Bash script containing commands to automatically configure a redirect
+# on a new Ubuntu machine
 
-sudo echo "Hello World!" > /etc/nginx/html/index.html
-sudo printf %s "server {
-    listen 80;
-    listen [::]:80 default_server;
-    root   /etc/nginx/html;
-    index  index.html index.htm;
-    location /redirect_me {
-        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
-    }
-}" > /etc/nginx/sites-available/default
+sudo apt-get -y update
+sudo apt-get install -y nginx
+
+# Configure Nginx to listen on port 80
+sudo ufw allow 'Nginx HTTP'
+
+# start Nginx
+sudo service nginx start
+
+# With root priviledges, create a file with "Hello World!" message
+sudo su <<DELIMETER
+echo "Hello World!" > /var/www/html/index.html;
+DELIMETER
+
+# add permanent redirection
+new_string="server_name _;\n\trewrite ^\/redirect_me https:\/\/github.com\/ViweTeko permanent;"
+sudo sed -i "s/server_name _;/$new_string/" /etc/nginx/sites-enabled/default
 
 sudo service nginx restart
