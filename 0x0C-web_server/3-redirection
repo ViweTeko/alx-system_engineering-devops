@@ -2,7 +2,7 @@
 # Configure your Nginx server so that /redirect_me is redirecting to another page.
 # The redirection is configured as a "301 Moved Permanently"
 
-sudo echo "Hello Word!" > /etc/nginx/html/index.html
+sudo echo "Hello World!" > /etc/nginx/html/index.html
 sudo printf %s "server {
     listen 80;
     listen [::]:80 default_server;
