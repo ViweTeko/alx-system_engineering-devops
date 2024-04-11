@@ -19,5 +19,5 @@ frontend viwe-teko-tech-frontend
 
 backend viwe-teko-tech-backend
         balance roundrobin
-        server 453-web-01 54.157.174.222:80 check
-        server 453-web-02 54.175.133.170:80 check
+        server 482898-web-01 54.157.174.222:80 check
+        server 482898-web-02 54.175.133.170:80 check
