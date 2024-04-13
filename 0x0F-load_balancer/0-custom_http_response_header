@@ -2,10 +2,19 @@
 #!/usr/bin/env bash
 # This script configures web-02 to be identical to web-01
 
+<<<<<<< HEAD
 if ! ( nginx -v &>/dev/null); then
     sudo apt update -y -qq && \
 		sudo apt install -y nginx -qq
 fi
+=======
+apt-get -y update
+apt-get -y install nginx
+echo "Hello World!" > /var/www/html/index.nginx-debian.html
+echo "Ceci n'est pas une page" > /usr/share/nginx/html/custom_404.html
+sed -i "s/server_name _;/server_name _;\n\trewrite ^\/redirect_me https:\/\/github.com\/ViweTeko permanent;\n\n\terror_page 404 \/custom_404.html;\n\tlocation = \/custom_404.html {\n\t\troot \/usr\/share\/nginx\/html;\n\t\tinternal;\n\t}/" /etc/nginx/sites-available/default
+sed -i "s/include \/etc\/nginx\/sites-enabled\/\*;/include \/etc\/nginx\/sites-enabled\/\*;\n\tadd_header X-Served-By \"$HOSTNAME\";/" /etc/nginx/nginx.conf
+>>>>>>> 89323f3a2629a049d3653fcf182e3c6cb28eefd1
 
 if ( ufw version &>/dev/null ); then
     sudo ufw allow 'Nginx HTTP'
