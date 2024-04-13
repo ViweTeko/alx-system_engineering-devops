@@ -1,23 +1,40 @@
 #!/usr/bin/env bash
-# Installs and setup haproxy
+# Install and configure HAproxy on lb-01 server.
 
-apt-get install -y software-properties-common
-add-apt-repository -y ppa:vbernat/haproxy-1.8
-apt-get -y update
-apt-get install -y haproxy=1.8.\*
+if ! ( haproxy -v &>/dev/null ); then
+sudo apt-get install --no-install-recommends software-properties-common -y
+sudo add-apt-repository ppa:vbernat/haproxy-2.6 -y
+sudo apt update -y &&\
+        sudo apt-get install haproxy=2.6.\* -y
+fi
 
-echo "ENABLED=1" > /etc/default/haproxy
+config=\
+"
+defaults
+    mode http
+    timeout client 30s
+    timeout connect 15s
+    timeout server 15s
+    timeout http-request 15s
 
-# Listen to web1 and web2 servers
-echo "
-   listen load_balancer
-   bind *:80
-   mode http
-   balance roundrobin
-   option httpclose
-   option forwardfor
-   server 482898-web-01 54.157.174.222:80 check
-   server 482898-web-02 54.175.133.170:80 check
-" >> /etc/haproxy/haproxy.cfg
+frontend viwe-teko-tech-frontend
+    bind *:80
+    default_backend web_backend
 
-service haproxy start
+backend viwe-teko-tech-backend
+    balance roundrobin
+    server 482898-web-01 54.157.174.222:80 check
+    server 482898-web-02 54.175.133.170:80 check
+"
+
+sudo cp /etc/haproxy/haproxy.cfg haproxy.cfg.backup
+
+echo "$config" | sudo tee /etc/haproxy/haproxy.cfg
+
+echo "ENABLED=1" | sudo tee /etc/default/haproxy
+
+if [ "$(pgrep -c haproxy)" -eq 0 ]; then
+    sudo service haproxy start
+else
+    sudo service haproxy restart
+fi
