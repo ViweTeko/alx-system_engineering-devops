@@ -19,7 +19,7 @@ defaults
 
 frontend viwe-teko-tech-frontend
     bind *:80
-    default_backend web_backend
+    default_backend viwe-teko-tech-backend
 
 backend viwe-teko-tech-backend
     balance roundrobin
