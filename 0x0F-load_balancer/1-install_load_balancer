@@ -1,19 +1,12 @@
 #!/usr/bin/env bash
 # Install and configure HAproxy on lb-01 server.
 
-<<<<<<< HEAD
 if ! ( haproxy -v &>/dev/null ); then
 sudo apt-get install --no-install-recommends software-properties-common -y
 sudo add-apt-repository ppa:vbernat/haproxy-2.6 -y
 sudo apt update -y &&\
         sudo apt-get install haproxy=2.6.\* -y
 fi
-=======
-apt-get install -y software-properties-common
-add-apt-repository -y ppa:vbernat/haproxy-2.4
-apt-get -y update
-apt-get install -y haproxy=2.4.\*
->>>>>>> 89323f3a2629a049d3653fcf182e3c6cb28eefd1
 
 config=\
 "
@@ -26,7 +19,7 @@ defaults
 
 frontend viwe-teko-tech-frontend
     bind *:80
-    default_backend web_backend
+    default_backend viwe-teko-tech-backend
 
 backend viwe-teko-tech-backend
     balance roundrobin
