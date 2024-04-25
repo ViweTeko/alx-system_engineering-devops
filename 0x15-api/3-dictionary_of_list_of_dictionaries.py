@@ -20,7 +20,7 @@ if __name__ == "__main__":
 
         task = response.json()
         u_dict[USER_ID] = []
-        for job in tasks:
+        for job in task:
             JOB_DONE_STATUS = job.get('completed')
             TITLE = job.get('title')
             u_dict[USER_ID].append(

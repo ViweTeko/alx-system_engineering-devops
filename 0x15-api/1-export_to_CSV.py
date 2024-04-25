@@ -14,7 +14,7 @@ if __name__ == "__main__":
     result = requests.get(todo)
     tasks = result.json()
 
-    with open('{}.csv'.format(user), w) as csv_file:
+    with open('{}.csv'.format(user), 'w') as csv_file:
         for job in tasks:
             done = job.get('completed')
             title = job.get('title')
