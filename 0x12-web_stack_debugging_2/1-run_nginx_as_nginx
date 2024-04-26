@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 # This file creates a new user
-sudo useradd nginx
-sudo sed -i "s/user.*/user nginx;/" /etc/nginx/nginx.conf
-sudo service nginx restart
+chmod 644 /etc/nginx/nginx.conf
+sed -Ei 's/\s*#?\s*user .*/user nginx;/' /etc/nginx/nginx.conf
+sed -Ei 's/(listen (\[::\]:)?80) /\180 /' /etc/nginx/sites-enabled/default
+pkill apache2
+su nginx -s /bin/bash -c 'service nginx restart'
