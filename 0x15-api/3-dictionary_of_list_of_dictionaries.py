@@ -14,6 +14,6 @@ if __name__ == "__main__":
                 "task": job.get("title"),
                 "completed": job.get("completed"),
                 "username": job.get("username")
-                } for job in requests.get(
+            } for job in requests.get(
                     url + "todos", params={"userId": us.get('id')}).json()]
-                for us in users}, file)
+            for us in users}, file)
