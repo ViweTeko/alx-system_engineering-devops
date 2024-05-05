@@ -3,30 +3,17 @@
 
 import requests
 import json
-from sys import argv
 
 if __name__ == "__main__":
-    url = "https://jsonplaceholder.typicode.com/users"
+    url = "https://jsonplaceholder.typicode.com/"
+    users = requests.get(url + "users").json()
 
-    response = requests.get(url)
-    Users = response.json()
-    u_dict = {}
-    for user in Users:
-        USER_ID = user.get('id')
-        USERNAME = user.get('username')
-        url = "https://jsonplaceholder.typicode.com/users/{}".format(USER_ID)
-        url = url + '/todos/'
-        response = requests.get(url)
-
-        task = response.json()
-        u_dict[USER_ID] = []
-        for job in task:
-            JOB_DONE_STATUS = job.get('completed')
-            TITLE = job.get('title')
-            u_dict[USER_ID].append(
-                    {
-                        "task": TITLE,
-                        "completed": JOB_DONE_STATUS,
-                        "username": USERNAME })
     with open('todo_all_employees.json', 'w') as file:
-        json.dump(u_dict, file)
+        json.dump({
+            us.get('id'): [{
+                "task": job.get("title"),
+                "completed": job.get("completed"),
+                "username": job.get("username")
+                } for job in requests.get(
+                    url + "todos", params={"userId": us.get('id')}).json()]
+                for us in users}, file)
