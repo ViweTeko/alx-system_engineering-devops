@@ -6,7 +6,7 @@ import json
 
 if __name__ == "__main__":
     url = "https://jsonplaceholder.typicode.com/"
-    users = requests.get(url + "users").json()
+    users = requests.get(url).json()
 
     with open('todo_all_employees.json', 'w') as file:
         json.dump({
@@ -15,5 +15,5 @@ if __name__ == "__main__":
                 "completed": job.get("completed"),
                 "username": job.get("username")
             } for job in requests.get(
-                    url + "todos", params={"userId": us.get('id')}).json()]
+                    url + "/todos", params={"userId": us.get('id')}).json()]
             for us in users}, file)
