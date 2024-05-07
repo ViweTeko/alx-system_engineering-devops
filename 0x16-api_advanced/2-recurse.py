@@ -2,6 +2,7 @@
 """Contains recurse function"""
 import requests
 
+
 def recurse(subreddit, hot_list=[], after="", count=0):
     """Returns a list of titles of all hot subreddit posts"""
     url = "https://www.reddit.com/r/{}/hot/.json".format(subreddit)

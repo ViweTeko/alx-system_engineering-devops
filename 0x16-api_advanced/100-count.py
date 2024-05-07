@@ -2,6 +2,7 @@
 """ This script queries Reddit API recursively"""
 import requests
 
+
 def count_words(subreddit, word_list, after="", word_dict-{}):
     """This function queries Reddit API and counts given keywords"""
     if not word_dict:
@@ -10,10 +11,10 @@ def count_words(subreddit, word_list, after="", word_dict-{}):
                 word_dict[word.lower()] = 0
     if after is None:
         new_dict = sorted(word_dict.items(), key=lambda x: (-x[1], x[0]))
-            for word in new_dict:
-                if word[1]:
-                    print('{}: {}'.format(word[0], word[1]))
-            return None
+        for word in new_dict:
+            if word[1]:
+                print('{}: {}'.format(word[0], word[1]))
+        return None
     url = 'https://www.reddit.com/r/{}/hot/.json'.format(subreddit)
     header = {'User-Agent': 'redquery'}
     parameters = {'limit': 100, 'after': after}
@@ -28,9 +29,9 @@ def count_words(subreddit, word_list, after="", word_dict-{}):
             title = post['data']['title']
             lower = [word.lower() for word in title.split(' ')]
             for word in word_dict.keys():
-                word_dict[word]+= lower.count(word)
+                word_dict[word] += lower.count(word)
     except Exception:
         return None
 
-count_words(subreddit, word_list, af, word_dict)
 
+count_words(subreddit, word_list, af, word_dict)

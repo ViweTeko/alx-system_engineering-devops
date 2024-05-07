@@ -3,6 +3,7 @@
 from sys import argv
 import requests
 
+
 def top_ten(subreddit):
     """Returns top ten posts for subreddit"""
     user = {"User-Agent": "Lizzie"}
