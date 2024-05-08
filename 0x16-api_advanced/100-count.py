@@ -33,5 +33,4 @@ def count_words(subreddit, word_list, after="", word_dict-{}):
     except Exception:
         return None
 
-
-count_words(subreddit, word_list, af, word_dict)
+    count_words(subreddit, word_list, af, word_dict)
