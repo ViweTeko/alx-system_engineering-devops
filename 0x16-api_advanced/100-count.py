@@ -13,9 +13,9 @@ def count_words(subreddit, word_list, after="", word_dict={}):
         new_dict = sorted(word_dict.items(), key=lambda x: (-x[1], x[0]))
         for word in new_dict:
             if word[1]:
-                print('{}: {}'.format(word[0], word[1]))
+                print(f'{word[0]}: {word[1]}')
         return None
-    url = 'https://www.reddit.com/r/{}/hot/.json'.format(subreddit)
+    url = f'https://www.reddit.com/r/{subreddit}/hot/.json'
     header = {'User-Agent': 'redquery'}
     parameters = {'limit': 100, 'after': after}
     response = requests.get(url, headers=header, params=parameters,
