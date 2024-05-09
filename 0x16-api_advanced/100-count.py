@@ -3,7 +3,7 @@
 import requests
 
 
-def count_words(subreddit, word_list, after="", word_dict-{}):
+def count_words(subreddit, word_list, after="", word_dict={}):
     """This function queries Reddit API and counts given keywords"""
     if not word_dict:
         for word in word_list:
