@@ -1,1 +1,1 @@
-Webstack Monitoring
+Webstack Monitoring installed
