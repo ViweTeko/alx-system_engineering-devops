@@ -8,10 +8,15 @@ def number_of_subscribers(subreddit):
     """returns the number of subscribers"""
     url = f"https://www.reddit.com/r/{subreddit}/about.json"
     headers = {
-        "User-Agent": "linux:0x16.api.advanced:v1.0.0 (by /u/bdov_)"
+        "User-Agent": "My user agent 1.0"
     }
     response = requests.get(url, headers=headers, allow_redirects=False)
-    if response.status_code == 404:
-        return 0
-    results = response.json().get("data")
-    return results.get("subscribers")
+    try:
+        response = requests.get(url, headers=headers, allow_redirects=False)
+        children = response.json().get('data').get('children')
+        for a in range(10):
+            print(children[a].get('data').get('title'))
+        else:
+            print('None')
+    except Exception:
+        print('None')
